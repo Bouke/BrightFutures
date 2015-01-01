@@ -271,10 +271,7 @@ public extension Future {
         let wrappedCallback : Future<T> -> () = { future in
             if let realRes = self.result {
                 c.execute {
-                    self.callbackExecutionQueue.sync {
-                        callback(result: realRes)
-                        return
-                    }
+                    callback(result: realRes)
                     return
                 }
             }
